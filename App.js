@@ -1,41 +1,58 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
 	Text,
 	View,
 	StyleSheet,
 	Image,
+	Button,
 } from 'react-native';
-
-import Button from './src/components/Button';
-
-import Header from "./src/components/Header";
+import Login from "./src/screens/Login";
 
 const App = () => {
-	const title = "Welcome";
+	
+	const [number, setNumber] = useState(0);
+	
+	const increaseNumber = () => {
+		setNumber(number+1);
+	}
+	
+	const decreaseNumber = () => {
+		setNumber(number-1);
+	}
 	
 	return (
-		<View style={styles.container}>
-			<Header title="Hello" title2="54651" />
-			<Image 
-				source={require("./src/images/logo.png")}
-				style = {styles.logo}
-			/>
-			<Text style={styles.header}>{title}</Text>
-			<View style={styles.button}>
-				<Text style={styles.buttonText}>Enter</Text>
-			</View>
-			<Button
-				text="Enter"
-			/>
-		</View>
+		<Login />
 	)
+	
+	// return (
+	// 	<View style={styles.container}>
+	// 		<Text style={{marginVertical: 10, fontSize: 36, color: number > 5 ? 'red' : '#000' }}>Count: {number}</Text>
+	// 		<Text style={{marginVertical: 10, fontSize: 36, color: number > 5 ? 'red' : '#000' }}>Count: {number}</Text>
+	// 		<Text style={{marginVertical: 10, fontSize: 36, color: number > 5 ? 'red' : '#000' }}>Count: {number}</Text>
+	// 		<Text style={{marginVertical: 10, fontSize: 36, color: number > 5 ? 'red' : '#000' }}>Count: {number}</Text>
+	// 		<Text style={{marginVertical: 10, fontSize: 36, color: number > 5 ? 'red' : '#000' }}>Count: {number}</Text>
+	// 		{ number < 10 ?
+	// 			<Button 
+	// 				title="Increase"
+	// 				onPress={increaseNumber}
+	// 			/>
+	// 		: <Text>MAX</Text> }
+	// 		{ number > 5 ?
+	// 			<Button 
+	// 				title="Decrease"
+	// 				onPress={decreaseNumber}
+	// 			/>
+	// 		: null }
+	// 	</View>
+	// )
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
 		alignItems: 'center',
+		justifyContent: 'center',
 		flex: 1,
 	},
 	logo: {
