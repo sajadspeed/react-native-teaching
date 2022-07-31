@@ -1,19 +1,53 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
 	View, 
 	Text, 
 	StyleSheet,
 	TextInput,
-	TouchableNativeFeedback
+	TouchableNativeFeedback, 
+	Alert
 } from 'react-native';
+
+import { randomNumber } from '../util/functions';
 
 const Login = () => {
 	
 	const [email, setEmail] = useState();
-	const [phone, setPhone] = useState();
+	const [phone, setPhone] = useState('');
 	const [username, setUsername] = useState();
 	const [password, setPassword] = useState();
+	const [keyboardShow, setKeyboardShow] = useState(false);
+	const [keyboardCharacters, setKeyboardCharacters] = useState([]);
+	
+	useEffect(()=>{
+		// Run when component call
+		let keyboardCharactersTmp = keyboardCharacters;
+		
+		while (keyboardCharactersTmp.length < 10) {
+			const rndNumber = randomNumber(0, 9) + "";
+			if(keyboardCharactersTmp.indexOf(rndNumber) < 0)
+				keyboardCharactersTmp.push(rndNumber);
+		}
+		
+		setKeyboardCharacters(keyboardCharactersTmp);
+		Alert.alert("Hello", 
+			"What the fuck are you doing man?",
+			[
+				{
+					text: 'cancel honey'
+				},
+				{
+					text: "Fuck Yeah",
+					onPress: () => console.log("This asshole click in FUCK YEAH...")
+				},
+			],
+			{
+				cancelable: true
+			}
+		)
+		///
+	}, []);
 	
 	const login = () => {		
 		const data = {
@@ -31,6 +65,11 @@ const Login = () => {
 		/// SEND DATA
 	}
 	
+	const keyboardPress = (character) => {
+		setPhone( prevState => prevState + character);
+		//setPhone(phone + character);
+	}
+	
 	return(
 		<View style={styles.container}>
 			<TextInput
@@ -44,6 +83,9 @@ const Login = () => {
 				keyboardType='numeric'
 				style={styles.textInput}
 				onChangeText={setPhone}
+				onFocus={()=> setKeyboardShow(true)}
+				onEndEditing={()=> setKeyboardShow(false)}
+				value={phone}
 			/>
 			<TextInput
 				placeholder='Username:'
@@ -63,6 +105,18 @@ const Login = () => {
 					<Text style={styles.buttonText}>LOGIN</Text>
 				</View>
 			</TouchableNativeFeedback>
+			{ keyboardShow ?
+				<View style={styles.keyboard}>		
+					{keyboardCharacters.map((charParam, index)=> 
+						<TouchableNativeFeedback onPress={()=> keyboardPress(charParam)} key={index}>
+							<View style={styles.keyboardButton}>
+								<Text style={styles.keyboardButtonText}>{charParam}</Text>
+							</View>
+						</TouchableNativeFeedback>
+					)}
+				</View>
+				: null
+			}
 		</View>
 	)
 }
@@ -90,6 +144,24 @@ const styles = StyleSheet.create({
 	buttonText: {
 		color: '#FFF',
 		fontSize: 18
+	},
+	keyboard: {
+		width: '60%',
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
+		marginTop: 10
+	},
+	keyboardButton: {
+		width: '32%',
+		height: 40,
+		alignItems: 'center',
+		marginVertical: 5, 
+		backgroundColor: '#efefef',
+		borderRadius: 10,
+	},
+	keyboardButtonText: {
+		fontSize: 24
 	}
 });
 
