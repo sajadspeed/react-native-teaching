@@ -9,9 +9,11 @@ import {
 	Alert
 } from 'react-native';
 
+import { Button } from '../components';
+
 import { randomNumber } from '../util/functions';
 
-const Login = () => {
+const Login = ({navigation}) => {
 	
 	const [email, setEmail] = useState();
 	const [phone, setPhone] = useState('');
@@ -31,21 +33,21 @@ const Login = () => {
 		}
 		
 		setKeyboardCharacters(keyboardCharactersTmp);
-		Alert.alert("Hello", 
-			"What the fuck are you doing man?",
-			[
-				{
-					text: 'cancel honey'
-				},
-				{
-					text: "Fuck Yeah",
-					onPress: () => console.log("This asshole click in FUCK YEAH...")
-				},
-			],
-			{
-				cancelable: true
-			}
-		)
+		// Alert.alert("Hello", 
+		// 	"What the fuck are you doing man?",
+		// 	[
+		// 		{
+		// 			text: 'cancel honey'
+		// 		},
+		// 		{
+		// 			text: "Fuck Yeah",
+		// 			onPress: () => console.log("This asshole click in FUCK YEAH...")
+		// 		},
+		// 	],
+		// 	{
+		// 		cancelable: true
+		// 	}
+		// )
 		///
 	}, []);
 	
@@ -72,6 +74,13 @@ const Login = () => {
 	
 	return(
 		<View style={styles.container}>
+			<Button
+				text="Go to Forgot Password"
+				color="blue"
+				onPress={()=>{
+					navigation.navigate("Forgot_Password");
+				}}
+			/>
 			<TextInput
 				placeholder='Email:'
 				keyboardType='email-address'

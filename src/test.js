@@ -1,29 +1,15 @@
-const showInfo = ({name, age, city, id}) => {
-	let result = "Name: " + name + ", Age: " + age + ", City: " + city;
-	
-	if(typeof id != "undefined")
-		result += ", ID:" + id;
-	
-	return result;
-	
-	//return "Name: " + person.name + ", Age: " + person.age + ", City: " + person.city;
+const doSomeThingWithDelay = (str, callback) => {
+	setTimeout(() => {
+		callback(str + "...", str + ",,,");
+	}, 50);
 }
 
+const showStr = (str) => console.log(str);
 
-const person = {
-	name: 'Ali',
-	age: 20,
-	city: 'Tehran',
-}
+doSomeThingWithDelay("Hello", (str, strWithAnd) => console.log(strWithAnd));
 
-console.log(showInfo(person));
+let array = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// const {city, age} = person;
-
-// console.log(city, age);
-
-// const courses = [18, 15];
-
-// const [c2, c1] = courses;
-
-// console.log(c2, c1);
+array.forEach((value, index)=>{
+	console.log(value, index);
+})

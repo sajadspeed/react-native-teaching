@@ -18,3 +18,16 @@
 - States, Props
 - Example: Login screen
 - Example: Calculator
+- Require tricks
+- Callbacks intro
+- React Navigation Basic
+- FlatList
+- Modules tricks
+- Synchronies and ASynchronies
+- Callback, Promise
+- fetch and axios
+- Async/Await
+- state in components concept
+- Lifecycle
+- useEffect
+- Bottom and Top Navigation Menu
