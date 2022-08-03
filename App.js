@@ -21,6 +21,7 @@ import {
 import Home from "./src/screens/Home";
 import Login from "./src/screens/Login";
 import Forgot_Password from "./src/screens/Forgot_Password";
+import Posts from "./src/screens/Posts";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,7 +29,7 @@ const App = () => {
 	
 	return (
 		<NavigationContainer >
-			<Stack.Navigator initialRouteName="Login">
+			<Stack.Navigator initialRouteName="Home">
 				
 				{/* SCREENS */}
 				
@@ -36,7 +37,7 @@ const App = () => {
 					name="Home"
 					component={Home}
 					options={{
-						title: 'خونه',
+						title: 'Home',
 //						headerShown: false
 					}}
 				/>
@@ -47,6 +48,10 @@ const App = () => {
 				<Stack.Screen 
 					name="Forgot_Password"
 					component={Forgot_Password}
+				/>
+				<Stack.Screen 
+					name="Posts"
+					component={Posts}
 				/>
 				
 			</Stack.Navigator>
