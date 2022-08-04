@@ -9,6 +9,8 @@ import {
 	Alert
 } from 'react-native';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { Button } from '../components';
 
 import { randomNumber } from '../util/functions';
@@ -60,7 +62,12 @@ const Login = ({navigation}) => {
 		};
 		
 		console.log(data);
+		saveData(data)
 		sendToAPI(data)
+	}
+	
+	const saveData = (data) => {
+		AsyncStorage.setItem("user_email", data.email).then(()=> console.log("email Saved"))
 	}
 	
 	const sendToAPI = (data) => {

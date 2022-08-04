@@ -36,3 +36,4 @@
 - Font Icons
 - Bottom and Top Navigation Menu
 - Typescript and Javascript
+- Assets and Android APK structure

@@ -7,7 +7,9 @@ import {
 	FlatList
 } from 'react-native';
 import Post from '../components/Post';
+
 import images from '../images';
+import axios from 'axios';
 
 const Posts = () => {
 	
@@ -15,14 +17,11 @@ const Posts = () => {
 	
 	useEffect(() => {
 		
-		fetch("https://dummyjson.com/products")
-		.then((dataReceive)=> dataReceive.json())
-		.then(dataReceive => {
+		axios.get("https://dummyjson.com/products").then(response => {
 			
-			setData(dataReceive.products);
+			setData(response.data.products);
 			
-		})
-		.catch((error)=>{
+		}).catch((error)=>{
 			console.log("ERROR:", error);
 		})
 		

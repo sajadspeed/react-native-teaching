@@ -22,6 +22,7 @@ import Home from "./src/screens/Home";
 import Login from "./src/screens/Login";
 import Forgot_Password from "./src/screens/Forgot_Password";
 import Posts from "./src/screens/Posts";
+import Info from "./src/screens/Info";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,7 +54,10 @@ const App = () => {
 					name="Posts"
 					component={Posts}
 				/>
-				
+				<Stack.Screen 
+					name="Info"
+					component={Info}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	)
