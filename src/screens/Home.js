@@ -11,6 +11,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Test from '../components/Test';
 
+import Icon from 'react-native-vector-icons/Ionicons';
+import strings from '../strings/en';
+
 const Home = ({navigation}) => {
 	
 	const [email, setEmail] = useState('');
@@ -56,6 +59,8 @@ const Home = ({navigation}) => {
 	
 	return(
 		<View style={{alignItems: 'center', marginTop: 10}}>
+			<Icon name="american-football" size={100} color="#000" />
+			<Text style={{fontFamily: 'main', fontSize: 24}}>{strings.title}</Text>
 			<Test />
 			<Text>{email}</Text>
 			<Button

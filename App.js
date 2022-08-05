@@ -1,22 +1,10 @@
 import React, {useState} from "react";
 
-import {
-	Text,
-	View,
-	StyleSheet,
-	Image,
-} from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import images from "./src/images";
-
-import {
-	Button,
-	Header
-} from './src/components';
+import {setCustomText, setCustomTextInput} from 'react-native-global-props';
 
 import Home from "./src/screens/Home";
 import Login from "./src/screens/Login";
@@ -28,9 +16,18 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
 	
+	const customTextProps = {
+		style: {
+			fontFamily: 'main',
+		},
+	};
+	
+	setCustomText(customTextProps);
+  	setCustomTextInput(customTextProps);
+	
 	return (
 		<NavigationContainer >
-			<Stack.Navigator initialRouteName="Home">
+			<Stack.Navigator initialRouteName="Home" screenOptions={{headerTitleStyle: {fontFamily: 'main'}}}>
 				
 				{/* SCREENS */}
 				
@@ -38,13 +35,19 @@ const App = () => {
 					name="Home"
 					component={Home}
 					options={{
-						title: 'Home',
-//						headerShown: false
+						title: 'خانه',
+						// headerShown: false
+						// headerTitleStyle: {
+						// 	fontFamily: 'main',
+						// }
 					}}
 				/>
 				<Stack.Screen 
 					name="Login"
 					component={Login}
+					options= {{
+						title: 'لاگین'
+					}}
 				/>
 				<Stack.Screen 
 					name="Forgot_Password"

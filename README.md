@@ -24,16 +24,21 @@
 - ~~FlatList~~
 - ~~Synchronies and ASynchronies~~
 - ~~Callback, Promise~~
-- ~~fetch~~ and axios
-- Module tricks | react-native-device-info
-- Async/Await
-- Async Storage
-- Shadow
-- state in components concept
-- Lifecycle
-- useEffect
-- Fonts
-- Font Icons
+- ~~fetch and axios~~
+- ~~Module tricks | react-native-device-info~~
+- ~~Async/Await~~
+- ~~Async Storage~~
+- ~~Shadow~~
+- ~~state in components concept~~
+- ~~Lifecycle~~
+- ~~useEffect~~
+- ~~Fonts~~
+- ~~Font Icons~~
+- RTL force
+- Multi language
 - Bottom and Top Navigation Menu
 - Typescript and Javascript
 - Assets and Android APK structure
+- Modal
+- useRef
+- File upload to server
