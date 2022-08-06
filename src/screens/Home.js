@@ -11,12 +11,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import Test from '../components/Test';
 
+import Modal from "react-native-modal";
+
 import Icon from 'react-native-vector-icons/Ionicons';
-import strings from '../strings/en';
+import strings from '../strings';
 
 const Home = ({navigation}) => {
 	
 	const [email, setEmail] = useState('');
+	const [modalShow, setModalShow] = useState(false);
 	
 	useEffect(() => {
 		fakeGetData();
@@ -82,6 +85,25 @@ const Home = ({navigation}) => {
 					navigation.navigate("Info");
 				}}
 			/>
+			<Button
+				text="Modal Show"
+				onPress={()=> setModalShow(true)}
+			/>
+			<Modal 
+				isVisible={modalShow}
+				useNativeDriver
+				// animationIn= 'fadeIn'
+				// animationOut= 'fadeOut'
+				animationInTiming={100}
+				onBackdropPress={() => setModalShow(false)} 
+				onRequestClose={() => {
+					setModalShow(false)
+				}}
+			>
+				<View style={{ backgroundColor: '#FFF', padding: 15, borderRadius: 20 }}>
+					<Text>I am the modal content!</Text>
+				</View>
+			</Modal>
 		</View>
 	)
 }

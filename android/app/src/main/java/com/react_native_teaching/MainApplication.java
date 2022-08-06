@@ -13,6 +13,8 @@ import com.react_native_teaching.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.facebook.react.modules.i18nmanager.I18nUtil;
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -53,6 +55,11 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     // If you opted-in for the New Architecture, we enable the TurboModule system
+	
+	I18nUtil sharedI18nUtilInstance = I18nUtil.getInstance();
+	sharedI18nUtilInstance.allowRTL(this, true);
+	sharedI18nUtilInstance.forceRTL(this,true);
+	
     ReactFeatureFlags.useTurboModules = BuildConfig.IS_NEW_ARCHITECTURE_ENABLED;
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());

@@ -8,31 +8,31 @@ import {
 	TouchableNativeFeedback, 
 	Alert
 } from 'react-native';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+
 import { routesServer } from '../util/functions';
 
-import RNRestart from 'react-native-restart';
-
-const Login = ({navigation}) => {
+const Signup = ({navigation}) => {
 	
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	
-	const login = async ()=>{
+	const signup = async ()=>{
 		try{
+			
+			if(typeof email == 'undefined' || email == null){
+				alert("کامل کنید");
+				return false;
+			}
+			
 			const data = {
 				email: email,
 				password: password,
 			};
 			
-			const response = await axios.post(routesServer.api+"user_login.php", data, {timeout: 1000});
-			
-			if(response.data.status == 1){
-				await AsyncStorage.setItem("token", response.data.token);
-				RNRestart.Restart();
-			}
+			const response = await axios.post(routesServer.api+"user_add.php", data, {timeout: 1000});
+			if(response.data.status == 1)
+				navigation.navigate("Login");
 			else
 				alert(response.data.error);
 		}
@@ -56,14 +56,7 @@ const Login = ({navigation}) => {
 				onChangeText={setPassword}
 			/>
 			<TouchableNativeFeedback
-				onPress={login}
-			>
-				<View style={styles.button}>
-					<Text style={styles.buttonText}>LOGIN</Text>
-				</View>
-			</TouchableNativeFeedback>
-			<TouchableNativeFeedback
-				onPress={()=>navigation.navigate("Signup")}
+				onPress={signup}
 			>
 				<View style={styles.button}>
 					<Text style={styles.buttonText}>SIGNUP</Text>
@@ -91,8 +84,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 5,
 		borderRadius: 5,
 		justifyContent: 'center',
-		alignItems: 'center', 
-		marginVertical: 10
+		alignItems: 'center'
 	},
 	buttonText: {
 		color: '#FFF',
@@ -118,4 +110,4 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default Login;
+export default Signup;
