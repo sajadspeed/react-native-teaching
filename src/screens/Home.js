@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 
 import {
 	View, 
@@ -15,11 +15,13 @@ import Modal from "react-native-modal";
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import strings from '../strings';
+import { Context } from '../util/Store';
 
 const Home = ({navigation}) => {
 	
 	const [email, setEmail] = useState('');
 	const [modalShow, setModalShow] = useState(false);
+	const [globalState, dispatch] = useContext(Context);
 	
 	useEffect(() => {
 		fakeGetData();
@@ -88,6 +90,17 @@ const Home = ({navigation}) => {
 			<Button
 				text="Modal Show"
 				onPress={()=> setModalShow(true)}
+			/>
+			<Text>Cart count: {globalState.cartCount}</Text>
+			<Button
+				text="Increase Cart count"
+				onPress={()=> dispatch({type: "incrementCartCount"})}
+				color="red"
+			/>
+			<Button
+				text="Decrease Cart count"
+				onPress={()=> dispatch({type: "decrementCartCount"})}
+				color="yellow"
 			/>
 			<Modal 
 				isVisible={modalShow}

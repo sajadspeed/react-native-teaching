@@ -20,6 +20,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import Splash from "./src/screens/Splash";
 import Start from "./src/screens/Start";
 
+import { Store } from "./src/util/Store";
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -58,83 +60,85 @@ const App = () => {
 	}
 	
 	return (
-		<NavigationContainer >
-			<Stack.Navigator screenOptions={{headerTitleStyle: {fontFamily: 'main'}}}>
-				
-				{/* SCREENS */}
-				
-				{
-					!loading ? 
+		<Store>
+			<NavigationContainer >
+				<Stack.Navigator screenOptions={{headerTitleStyle: {fontFamily: 'main'}}}>
 					
-						isLogin == 1 ?
+					{/* SCREENS */}
+					
+					{
+						!loading ? 
 						
-						<>
-							<Stack.Screen 
-								name="Start"
-								component={Start}
-								options={{
-									headerShown: false
-									// headerTitleStyle: {
-									// 	fontFamily: 'main',
-									// }
-								}}
-							/>
-							<Stack.Screen 
-								name="Login"
-								component={Login}
-								options= {{
-									title: 'لاگین'
-								}}
-							/>
-							<Stack.Screen 
-								name="Signup"
-								component={Signup}
-								options= {{
-									title: 'ثبت‌نام'
-								}}
-							/>
-							<Stack.Screen 
-								name="Forgot_Password"
-								component={Forgot_Password}
-							/>
-							<Stack.Screen 
-								name="Posts"
-								component={Posts}
-							/>
-							<Stack.Screen 
-								name="Info"
-								component={Info}
-							/>
-						</>
-						
+							isLogin == 1 ?
+							
+							<>
+								<Stack.Screen 
+									name="Start"
+									component={Start}
+									options={{
+										headerShown: false
+										// headerTitleStyle: {
+										// 	fontFamily: 'main',
+										// }
+									}}
+								/>
+								<Stack.Screen 
+									name="Login"
+									component={Login}
+									options= {{
+										title: 'لاگین'
+									}}
+								/>
+								<Stack.Screen 
+									name="Signup"
+									component={Signup}
+									options= {{
+										title: 'ثبت‌نام'
+									}}
+								/>
+								<Stack.Screen 
+									name="Forgot_Password"
+									component={Forgot_Password}
+								/>
+								<Stack.Screen 
+									name="Posts"
+									component={Posts}
+								/>
+								<Stack.Screen 
+									name="Info"
+									component={Info}
+								/>
+							</>
+							
+							:
+							<>
+								<Stack.Screen 
+									name="Login"
+									component={Login}
+									options= {{
+										title: 'لاگین'
+									}}
+								/>
+								<Stack.Screen 
+									name="Signup"
+									component={Signup}
+									options= {{
+										title: 'ثبت‌نام'
+									}}
+								/>
+							</>
 						:
-						<>
-							<Stack.Screen 
-								name="Login"
-								component={Login}
-								options= {{
-									title: 'لاگین'
-								}}
-							/>
-							<Stack.Screen 
-								name="Signup"
-								component={Signup}
-								options= {{
-									title: 'ثبت‌نام'
-								}}
-							/>
-						</>
-					:
-					<Stack.Screen 
-						name="Splash"
-						component={Splash}
-						options= {{
-							headerShown: false
-						}}
-					/>
-				}
-			</Stack.Navigator>
-		</NavigationContainer>
+						<Stack.Screen 
+							name="Splash"
+							component={Splash}
+							options= {{
+								headerShown: false
+							}}
+						/>
+					}
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Store>
 	)
 }
 

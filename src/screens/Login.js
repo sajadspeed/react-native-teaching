@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import {
 	View, 
@@ -20,8 +20,14 @@ const Login = ({navigation}) => {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	
+	const passwordInput = useRef();
+	
+	//let tmpNumber = 5;
+	const tmpNumber = useRef(5);
+	
 	const login = async ()=>{
 		try{
+			//tmpNumber.current = 7;
 			const data = {
 				email: email,
 				password: password,
@@ -48,12 +54,15 @@ const Login = ({navigation}) => {
 				keyboardType='email-address'
 				style={styles.textInput}
 				onChangeText={setEmail}
+				returnKeyType="next"
+				onEndEditing={() => passwordInput.current.focus()}
 			/>
 			<TextInput
 				placeholder='Password:'
 				secureTextEntry
 				style={styles.textInput}
 				onChangeText={setPassword}
+				ref={passwordInput}
 			/>
 			<TouchableNativeFeedback
 				onPress={login}

@@ -17,6 +17,9 @@ const Signup = ({navigation}) => {
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
 	
+	const [keyboardShow, setKeyboardShow] = useState(true);
+	const [keyboardCharacters, setKeyboardCharacters] = useState([1,2,3,4,5,6,7,8,9,0]);
+	
 	const signup = async ()=>{
 		try{
 			
@@ -62,6 +65,20 @@ const Signup = ({navigation}) => {
 					<Text style={styles.buttonText}>SIGNUP</Text>
 				</View>
 			</TouchableNativeFeedback>
+			
+			{ keyboardShow ?
+				<View style={styles.keyboard}>		
+					{keyboardCharacters.map((charParam, index)=> 
+						<TouchableNativeFeedback onPress={()=> console.log(charParam)} key={index}>
+							<View style={styles.keyboardButton}>
+								<Text style={styles.keyboardButtonText}>{charParam}</Text>
+							</View>
+						</TouchableNativeFeedback>
+					)}
+				</View>
+				: null
+			}
+			
 		</View>
 	)
 }
@@ -104,6 +121,8 @@ const styles = StyleSheet.create({
 		marginVertical: 5, 
 		backgroundColor: '#efefef',
 		borderRadius: 10,
+		marginRight: 'auto',
+		marginLeft: 'auto'
 	},
 	keyboardButtonText: {
 		fontSize: 24
